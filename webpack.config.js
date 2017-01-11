@@ -21,6 +21,6 @@ module.exports = {
   },
   entry: {
     // Set index.tsx as application entry point.
-    app: './index.tsx'
+    app: './src/index.tsx'
   }
 };

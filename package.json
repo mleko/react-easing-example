@@ -3,14 +3,17 @@
   "version": "1.0.0",
   "private": true,
   "scripts": {
-    "start": "webpack-dev-server"
+    "start": "webpack-dev-server --open"
   },
   "license": "MIT",
   "devDependencies": {
+    "@types/es6-shim": "^0.31.32",
     "@types/react": "^0.14.29",
     "@types/react-dom": "^0.14.14",
+    "es6-shim": "^0.35.2",
     "react": "^15.3.0",
     "react-dom": "^15.3.0",
+    "react-easing": "^0.2.0",
     "ts-loader": "^0.8.0",
     "tslint": "^4.0.2",
     "tslint-loader": "^3.3.0",

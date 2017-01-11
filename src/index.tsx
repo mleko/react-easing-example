@@ -1,10 +1,14 @@
+import "es6-shim";
 import * as React from "react";
 import * as ReactDOM from "react-dom";
+import {Examples} from "./components/Examples/index";
 
 class SampleComponent extends React.Component<void, void> {
 	public render(): JSX.Element {
 		return (
-			<h1>Hello, TypeScript!</h1>
+			<div>
+				<Examples/>
+			</div>
 		);
 	}
 }
