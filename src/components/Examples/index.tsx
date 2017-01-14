@@ -1,61 +1,41 @@
 import * as React from "react";
-import {animate, AnimationOptions} from "react-easing";
-import {FloatingDiv} from "../FloatingDiv";
-
-const defs: AnimationOptions[] = [
-	{duration: 1000},
-	{duration: 1000, easing: "linear"},
-	{duration: 1000, easing: "ease-in-out"},
-	{duration: 1000, easing: "ease"},
-	{duration: 1000, easing: [0.23, 1, 0.32, 1]},
-	{duration: 2000, easing: "linear"},
-	{duration: 2000, easing: "ease-in-out"},
-];
-
-const animatedDivs = defs.map((def) => {
-	return animate(def)(FloatingDiv);
-});
+import {AnimationSamples} from "../AnimationSamples";
+import {AnnotatedElement} from "../AnnotatedElement";
+import {WrappedElement} from "../WrappedElement";
 
 export class Examples extends React.Component<void, State> {
 
 	constructor(props: void, context: any) {
 		super(props, context);
-		let values = [];
-		for (let d of defs) {
-			values.push(0);
-		}
 		this.state = {
-			values
+			annotated: 0,
+			wrapped: 0
 		};
 	}
 
 	public render(): JSX.Element {
-		let examples = [];
-		for (let i = 0; i < defs.length; i++) {
-			examples.push(React.createElement(animatedDivs[i], {
-				key: i,
-				x: this.state.values[i],
-				index: i,
-				text: JSON.stringify(defs[i]),
-				onClick: this.toggleState
-			}));
-		}
-
 		return (
-			<div>
-				{examples}
+			<div style={{textAlign: "center"}}>
+				<WrappedElement x={this.state.wrapped} text="wrappedElement" onClick={this.switchWrapped}/>
+				<AnnotatedElement x={this.state.annotated} text="annotatedElement" onClick={this.switchAnnotated}/>
+
+				<h2>Example configurations</h2>
+				<AnimationSamples/>
 			</div>
 		);
+
 	}
 
-	private toggleState = (i: number) => {
-		let copy = this.state.values.concat();
-		copy[i] = copy[i] ? 0.0 : 100.0;
-		this.setState({values: copy});
-	}
+	private switchAnnotated = () => {
+		this.setState({annotated: this.state.annotated ? 0 : 100});
+	};
 
+	private switchWrapped = () => {
+		this.setState({wrapped: this.state.wrapped ? 0 : 100});
+	};
 }
 
 interface State {
-	values: number[];
+	annotated?: number;
+	wrapped?: number;
 }

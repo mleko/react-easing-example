@@ -16,11 +16,16 @@ export class FloatingDiv extends React.Component<Props, void> {
 			borderBottom: "1px black solid",
 			backgroundColor: "#ddd",
 			marginBottom: 5,
-			cursor: "pointer"
+			cursor: "pointer",
+			margin: "0 100px 5px 100px"
 		};
 		return (
 			<div style={containerStyle} onClick={this.click}>
-				<div style={{position: "absolute", textAlign: "center", width: "100%", zIndex: 1}}>{this.props.text}</div>
+				<div
+					style={{position: "absolute", textAlign: "center", width: "100%", zIndex: 1}}
+				>
+					{this.props.text} value: {this.props.x.toFixed(2)}
+				</div>
 				<div style={brickStyle}/>
 			</div>
 		);
@@ -31,7 +36,7 @@ export class FloatingDiv extends React.Component<Props, void> {
 	}
 }
 
-interface Props {
+export interface Props {
 	x: number;
 	text?: string;
 	index?: number;
